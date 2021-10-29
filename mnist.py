@@ -27,15 +27,15 @@ layers = [
 	Sigmoid() 
 ]
 
-network = Network(x_train, y_train)
+epochs = 100
+learning_rate = 0.1
+
+network = Network(epochs, learning_rate)
 
 for i in layers:
 	network.add(i)
 
-epochs = 100
-learning_rate = 0.1
-
-network.train(epochs, learning_rate)
-network.predict(x_test, y_test)
+network.fit(x_train, y_train)
+pred = network.predict(x_test)
 network.display_cost_history()
-print(network.get_accuracy())
+print(network.get_accuracy(y_test, pred))
